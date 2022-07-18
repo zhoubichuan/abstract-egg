@@ -24,7 +24,7 @@ module.exports = {
   ],
   exclude: [
     './test/fixtures',
-    './dist',
+    './abstract-umi',
   ],
 };
 

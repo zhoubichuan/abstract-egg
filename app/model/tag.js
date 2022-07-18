@@ -1,12 +1,13 @@
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
-  const CategorySchema = new Schema({
+  const ObjectId = Schema.Types.ObjectId;
+  const TagSchema = new Schema({
     name: String,
     nameEn: String,
     descript: String,
     descriptEn: String,
-    creator: String,
+    creater: String,
     createTime: {
       type: Date,
       default: Date.now,
@@ -17,6 +18,6 @@ module.exports = app => {
       default: Date.now,
     },
   });
-  const Category = mongoose.model('Category', CategorySchema);
-  return Category;
+  const Tag = mongoose.model('Tag', TagSchema);
+  return Tag;
 };

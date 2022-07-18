@@ -1,59 +1,74 @@
-/**
- * Created by Administrator on 2018/5/14.
- */
 'use strict';
 const BaseController = require('./base');
-
-module.exports = class CategoriesController extends BaseController {
-  // 查询分类
+module.exports = class TagController extends BaseController {
   async index() {
     try {
       await this.getPager({
-        modName: 'Category',
+        modName: 'Tag',
         returnFields: ['name'],
       });
     } catch (error) {
       this.error(error);
     }
   }
+  async new() {
+
+  }
   async create() {
     const {
       ctx,
     } = this;
-    const category = ctx.request.body;
+    const tag = ctx.request.body;
     let {
       name,
-      nameEn = ''
-    } = category
+      nameEn
+    } = tag
     try {
-      let findName = await ctx.model.Category.findOne({
+      let findName = await ctx.model.Tag.findOne({
         name
       });
-      let findNameEn = await ctx.model.Category.findOne({
+      let findNameEn = await ctx.model.Tag.findOne({
         nameEn
       });
       if (findName) {
-        this.error('分类中文名称已存在！');
+        this.error('标签中文名称已存在！');
       } else if (findNameEn) {
-        this.error('分类英文名称已存在！');
+        this.error('标签英文名称已存在！');
       } else {
-        await ctx.model.Category.create(category);
-        this.success('保存分类成功');
+        tag.creater = this.user.username;
+        tag.updater = this.user.username;
+        let result = await ctx.model.Tag.create(tag);
+        this.success(result);
       }
     } catch (error) {
       this.error(error);
     }
   }
+  async show() {
+    const {
+      ctx
+    } = this
+    const id = ctx.params.id
+    try {
+      const result = await ctx.model.Tag.findById(id)
+      this.success(result)
+    } catch (err) {
+      this.error(err)
+    }
 
+  }
+  async edit() {
+
+  }
   async update() {
     const {
       ctx,
     } = this;
     const id = ctx.params.id;
-    const category = ctx.request.body;
+    const Tag = ctx.request.body;
     try {
-      const result = await ctx.model.Category.findByIdAndUpdate(id, category);
-      this.success('更新分类成功');
+      const result = await ctx.model.Tag.findByIdAndUpdate(id, Tag);
+      this.success('更新标签成功');
     } catch (error) {
       this.error(error);
     }
@@ -69,7 +84,7 @@ module.exports = class CategoriesController extends BaseController {
     } = ctx.request.body;
     ids.push(id);
     try {
-      await ctx.model.Category.remove({
+      await ctx.model.Tag.remove({
         _id: {
           $in: ids,
         },

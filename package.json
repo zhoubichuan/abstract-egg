@@ -4,12 +4,17 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "await-stream-ready": "^1.0.1",
+    "dayjs": "^1.8.27",
     "egg": "^2.2.1",
     "egg-cors": "^2.0.0",
     "egg-mongoose": "^2.2.1",
     "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
-    "egg-session-redis": "^1.0.0"
+    "egg-session-redis": "^1.0.0",
+    "egg-ueditor": "^1.1.0",
+    "md5": "^2.2.1",
+    "stream-wormhole": "^1.1.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

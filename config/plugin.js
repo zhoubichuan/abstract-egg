@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 exports.mongoose = {
   enabled: true,
-  package: "egg-mongoose"
+  package: 'egg-mongoose',
 };
 exports.cors = {
   enabled: true,
-  package: "egg-cors"
+  package: 'egg-cors',
 };
 // npm i egg-cors
 // plugin
-//Allow-COntrol
-//koa-cors egg-cors
+// Allow-COntrol
+// koa-cors egg-cors
 // had enabled by egg
 // exports.static = true;
