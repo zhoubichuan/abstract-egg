@@ -12,7 +12,7 @@ module.exports = appInfo => {
   // 它可以以对象的形式操作数据库
   config.mongoose = {
     client: {
-      url: 'mongodb://127.0.0.1/201812blog',
+      url: 'mongodb://zhoubichuan.com:27017/201812blog',
     },
   };
   config.security = {
@@ -22,5 +22,11 @@ module.exports = appInfo => {
   config.cors = {
     credentials: true,
   };
+  exports.cluster = {
+    listen: {
+      port: 7005,
+      hostname: '127.0.0.1', // 0.0.0.0
+    }
+  }
   return config;
 };
