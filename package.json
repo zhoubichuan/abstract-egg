@@ -7,7 +7,7 @@
     "await-stream-ready": "^1.0.1",
     "dayjs": "^1.8.27",
     "egg": "^2.2.1",
-    "egg-cors": "^2.0.0",
+    "egg-cors": "^3.0.1",
     "egg-mongoose": "^2.2.1",
     "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
