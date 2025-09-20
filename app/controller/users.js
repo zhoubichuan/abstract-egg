@@ -1,6 +1,62 @@
 'use strict';
 const BaseController = require('./base');
 class UsersController extends BaseController {
+  async add() {
+    const {
+      ctx,
+    } = this;
+    const { username, password, email } = ctx.request.body;
+
+    try {
+      user = await ctx.model.User.create({ username, password, email });
+      this.success(user);
+      console.log('添加成功');
+    } catch (error) {
+      this.error(error);
+    }
+  }
+  async del() {
+    const {
+      ctx,
+    } = this;
+    let user = ctx.request.body;
+    const { username, id } = ctx.request.body;
+    try {
+      user = await ctx.model.User.findByIdAndDelete(id, { username });
+      this.success(user);
+      console.log('登录成功');
+    } catch (error) {
+      this.error(error);
+    }
+  }
+  async edit() {
+    const {
+      ctx,
+    } = this;
+    let user = ctx.request.body;
+    const { username, password, email, id } = ctx.request.body;
+    try {
+      user = await ctx.model.User.findByIdAndUpdate(id, { username, password, email });
+      this.success(user);
+      console.log('登录成功');
+    } catch (error) {
+      this.error(error);
+    }
+  }
+  async query() {
+    const {
+      ctx,
+    } = this;
+    let user = ctx.request.body;
+
+    try {
+      user = await ctx.model.User.countDocuments(user);
+      this.success(user);
+      console.log('登录成功');
+    } catch (error) {
+      this.error(error);
+    }
+  }
   async signup() {
     const {
       ctx,

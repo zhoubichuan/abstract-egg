@@ -12,8 +12,7 @@ module.exports = appInfo => {
   // 它可以以对象的形式操作数据库
   config.mongoose = {
     client: {
-      url: 'mongodb://localhost:27017/treedata',
-      options: {} // 可选，MongoDB Node.js 客户端的其他配置选项
+      url: 'mongodb://zhoubichuan.com:27017/treedata',
     },
   };
   config.security = {

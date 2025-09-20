@@ -14,6 +14,7 @@
     "egg-session-redis": "^1.0.0",
     "egg-ueditor": "^1.1.0",
     "md5": "^2.2.1",
+    "mongodb": "^6.20.0",
     "stream-wormhole": "^1.1.0"
   },
   "devDependencies": {
