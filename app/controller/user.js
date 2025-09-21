@@ -5,8 +5,8 @@ class UsersController extends BaseController {
     const {
       ctx,
     } = this;
-    const { username, password, email } = ctx.request.body;
-
+    let user = ctx.request.body;
+    const { username, password, email } = user;
     try {
       user = await ctx.model.User.create({ username, password, email });
       this.success(user);
@@ -20,11 +20,11 @@ class UsersController extends BaseController {
       ctx,
     } = this;
     let user = ctx.request.body;
-    const { username, id } = ctx.request.body;
+    const { username, id } = user;
     try {
       user = await ctx.model.User.findByIdAndDelete(id, { username });
       this.success(user);
-      console.log('登录成功');
+      console.log('删除成功');
     } catch (error) {
       this.error(error);
     }
@@ -34,11 +34,11 @@ class UsersController extends BaseController {
       ctx,
     } = this;
     let user = ctx.request.body;
-    const { username, password, email, id } = ctx.request.body;
+    const { username, password, email, id } = user;
     try {
       user = await ctx.model.User.findByIdAndUpdate(id, { username, password, email });
       this.success(user);
-      console.log('登录成功');
+      console.log('编辑成功');
     } catch (error) {
       this.error(error);
     }
@@ -48,25 +48,14 @@ class UsersController extends BaseController {
       ctx,
     } = this;
     let user = ctx.request.body;
-
+    const { query, sorter, current, pageSize } = user
     try {
-      user = await ctx.model.User.countDocuments(user);
+      user = await ctx.model.User.find(query)
+        .sort(sorter)
+        .skip((current - 1) * pageSize)
+        .limit(pageSize);
       this.success(user);
-      console.log('登录成功');
-    } catch (error) {
-      this.error(error);
-    }
-  }
-  async signup() {
-    const {
-      ctx,
-    } = this;
-    let user = ctx.request.body;
-
-    try {
-      user = await ctx.model.User.create(user);
-      this.success(user);
-      console.log('登录成功');
+      console.log('查询成功');
     } catch (error) {
       this.error(error);
     }
@@ -75,10 +64,10 @@ class UsersController extends BaseController {
     const {
       ctx,
     } = this;
-    // 拿到请求体
-    const user = ctx.request.body;
+    let user = ctx.request.body;
+    const { username, password } = user;
     try {
-      const doc = await ctx.model.User.findOne(user);
+      const doc = await ctx.model.User.findOne({ username, password });
       if (doc) {
         // 可以通过ctx.session.user是否为null来判断此用户是否登录过
         ctx.session.user = doc;

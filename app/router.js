@@ -8,12 +8,13 @@ module.exports = app => {
     router,
     controller,
   } = app;
-  router.post('/api/user/add', controller.users.add); // 用户添加
-  router.post('/api/user/edit', controller.users.edit); // 用户修改
-  router.post('/api/user/del', controller.users.del); // 用户删除
-  router.get('/api/user/query', controller.users.query); // 用户查询
-  router.post('/api/user/login', controller.users.signin); // 用户登录
-  router.get('/api/user/signout', controller.users.signout); // 用户退出
+  // user
+  router.post('/api/user/add', controller.user.add); // 用户添加
+  router.post('/api/user/edit', controller.user.edit); // 用户修改
+  router.post('/api/user/del', controller.user.del); // 用户删除
+  router.get('/api/user/query', controller.user.query); // 用户查询
+  router.post('/api/user/login', controller.user.signin); // 用户登录
+  router.get('/api/user/signout', controller.user.signout); // 用户退出
 
   router.post('/api/upload', controller.upload.index);
   router.post('/api/upload/cteateContent', controller.upload.cteateContent);
