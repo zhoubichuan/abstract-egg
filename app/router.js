@@ -15,6 +15,7 @@ module.exports = app => {
   router.get('/api/user/query', controller.user.query); // 用户查询
   router.post('/api/user/login', controller.user.signin); // 用户登录
   router.get('/api/user/signout', controller.user.signout); // 用户退出
+  router.get('/api/user/current', controller.user.current); // 用户检查
 
   router.post('/api/upload', controller.upload.index);
   router.post('/api/upload/cteateContent', controller.upload.cteateContent);

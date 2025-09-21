@@ -39,8 +39,8 @@
     "node": "20.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=abstract-egg --env=prod",
-    "stop": "egg-scripts stop --title=abstract-egg --env=prod",
+    "start": "egg-scripts start --daemon --title=abstract-egg",
+    "stop": "egg-scripts stop --title=abstract-egg ",
     "dev": "egg-bin dev",
     "sit": "egg-scripts start --env=sit --daemon",
     "uat": "egg-scripts start --env=uat --daemon",

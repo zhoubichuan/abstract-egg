@@ -69,16 +69,27 @@ class UsersController extends BaseController {
     try {
       const doc = await ctx.model.User.findOne({ username, password });
       if (doc) {
-        // 可以通过ctx.session.user是否为null来判断此用户是否登录过
         ctx.session.user = doc;
         this.success({
-          user: doc,
+          username: doc.username,
         });
       } else {
         this.error('用户名或密码错误');
       }
     } catch (error) {
       this.error(error);
+    }
+  }
+  async current() {
+    const {
+      ctx,
+    } = this;
+    let user = ctx.request.body;
+    const { username, password } = user;
+    if (ctx.session.user.includes(username)) {
+      this.success('成功');
+    } else {
+      this.error('失败');
     }
   }
   async signout() {

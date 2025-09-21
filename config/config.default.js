@@ -21,8 +21,9 @@ module.exports = appInfo => {
     domainWhiteList: ['http://192.168.1.109:666'],
   };
   config.cors = {
-    credentials: true,
-  };
+    origin: '*', // 或者 origin: '*'  *代表所有来源都可访问
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS', //允许的请求方式  get、post等基本请求方式不需要设置
+  }
   exports.cluster = {
     listen: {
       port: 7005,
