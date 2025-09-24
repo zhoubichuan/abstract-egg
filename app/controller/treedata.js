@@ -6,9 +6,9 @@ class TreeDataController extends BaseController {
       ctx,
     } = this;
     let user = ctx.request.body;
-    const { l, password, email } = user;
+    const { label, value, url, level, descript, node, parent, hasChildren } = user;
     try {
-      user = await ctx.model.TreeData.create({ username, password, email });
+      user = await ctx.model.TreeData.create({ label, value, url, level, descript, node, parent, hasChildren });
       this.success(user);
       console.log('添加成功');
     } catch (error) {

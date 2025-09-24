@@ -54,7 +54,7 @@ class UsersController extends BaseController {
         .sort(sorter)
         .skip((current - 1) * pageSize)
         .limit(pageSize);
-      this.success(user);
+      this.success({ data: user });
       console.log('查询成功');
     } catch (error) {
       this.error(error);
